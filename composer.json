@@ -1,0 +1,11 @@
+{
+    "name": "hexlet/code",
+    "description": "hexlet code package",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Daniyar Mukhametkaliev"
+        }
+    ],
+    "require": {}
+}
