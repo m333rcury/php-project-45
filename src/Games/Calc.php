@@ -33,4 +33,3 @@ function startGame()
     }
     gameLogic($gameInstruction, $questions, $correctAnswers);
 }
-    
