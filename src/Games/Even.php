@@ -14,7 +14,7 @@ function startGame()
     $roundsCount = 3;
 
     for ($i = 0; $i < $roundsCount; $i++) {
-        $number = rand(1, 30);
+        $number = rand(1, 100);
         $questions[$i] = $number;
         $correctAnswers[$i] = ($number % 2 === 0) ? 'yes' : 'no';
     }

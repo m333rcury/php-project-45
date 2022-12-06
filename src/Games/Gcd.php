@@ -23,8 +23,8 @@ function startGame()
     $roundsCount = 3;
 
     for ($i = 0; $i < $roundsCount; $i++) {
-        $number1 = rand(1, 30);
-        $number2 = rand(1, 30);
+        $number1 = rand(1, 100);
+        $number2 = rand(1, 100);
         $questions[$i] = "{$number1} {$number2}";
         $correctAnswers[$i] = gcd($number1, $number2);
     }

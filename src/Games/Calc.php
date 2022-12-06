@@ -15,8 +15,8 @@ function startGame()
 
     $operations = ['-', '+', '*'];
     for ($i = 0; $i < $roundsCount; $i++) {
-        $number1 = rand(1, 30);
-        $number2 = rand(1, 30);
+        $number1 = rand(1, 100);
+        $number2 = rand(1, 100);
         $currentOperation = $operations[rand(0, 2)];
         $questions[$i] = "{$number1} {$currentOperation} {$number2}";
         switch ($currentOperation) {
