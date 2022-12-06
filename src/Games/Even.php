@@ -4,25 +4,19 @@ namespace BrainGames\Even;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\greetings;
-
-use const BrainGames\Engine\NUMBER_ROUNDS;
+use function BrainGames\Engine\gameLogic;
 
 function startGame()
 {
-    $name = greetings();
-    line('Answer "yes" if the number is even, otherwise answer "no".');
+    $gameInstruction = 'Answer "yes" if the number is even, otherwise answer "no".';
+    $questions = [];
+    $correctAnswers = [];
+    $roundsCount = 3;
 
-    $questionCount = 1;
-    while ($questionCount <= NUMBER_ROUNDS)
-    {
-        $number = rand(0, 100);
-        $isEven = $number%2 ===0? "yes" : "no";
-        line("Question: %d", $number);
-        $answer = prompt("Your answer");
-        ($answer === $isEven) ? line("Correct!") : line("$answer is wrong answer ;(. Correct answer was $isEven.\nLet's try again!");
-        $questionCount++;
+    for ($i = 0; $i < $roundsCount; $i++) {
+        $number = rand(1, 30);
+        $questions[$i] = $number;
+        $correctAnswers[$i] = ($number % 2 === 0) ? 'yes' : 'no';
     }
-    
-    line("Congratulations, %s!", $name);
+    gameLogic($gameInstruction, $questions, $correctAnswers);
 }

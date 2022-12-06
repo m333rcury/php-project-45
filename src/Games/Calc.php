@@ -4,40 +4,33 @@ namespace BrainGames\Calc;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\greetings;
-
-use const BrainGames\Engine\NUMBER_ROUNDS;
+use function BrainGames\Engine\gameLogic;
 
 function startGame()
 {
-    $name = greetings();
-    line('What is the result of the expression?');
-    
-    for ($round = 1; $round <= NUMBER_ROUNDS; $round++) {
-        $number1 = rand(0, 100);
-        $number2 = rand(0, 100);
-        $arrayOperations = ["+", "-", "*"];
-        $index = array_rand($arrayOperations);
-        $correctRes = [
-            '+' => $number1 + $number2,
-            '-' => $number1 - $number2,
-            '*' => $number1 * $number2,
-        ];
+    $gameInstruction = 'What is the result of the expression?';
+    $questions = [];
+    $correctAnswers = [];
+    $roundsCount = 3;
 
-        $sign = $arrayOperations[$index];
-    
-        line("Question: $number1 $sign $number2");
-        $answer = prompt("Your answer");
-        //($answer == $correctRes[$sign]) ? line("Correct!") : line("$answer is wrong answer ;(. Correct answer was $correctRes[$sign].\nLet's try again!");
-        if ($answer != $correctRes[$sign])
-        {
-            line("$answer is wrong answer ;(. Correct answer was $correctRes[$sign].\nLet's try again!");
-            break;
-        } else {
-            line("Correct!");
+    $operations = ['-', '+', '*'];
+    for ($i = 0; $i < $roundsCount; $i++) {
+        $number1 = rand(1, 30);
+        $number2 = rand(1, 30);
+        $currentOperation = $operations[rand(0, 2)];
+        $questions[$i] = "{$number1} {$currentOperation} {$number2}";
+        switch ($currentOperation) {
+            case "-":
+                $correctAnswers[$i] = $number1 - $number2;
+                break;
+            case "+":
+                $correctAnswers[$i] = $number1 + $number2;
+                break;
+            case "*":
+                $correctAnswers[$i] = $number1 * $number2;
+                break;
         }
-      
-}
-    line("Congratulations, %s!", $name);
+    }
+    gameLogic($gameInstruction, $questions, $correctAnswers);
 }
     
